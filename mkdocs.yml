@@ -1,0 +1,19 @@
+dev_addr: 127.0.0.1:8081
+site_name: Notebook
+theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
+markdown_extensions:
+    - toc:
+        baselevel: 2
+nav:
+    - Shell:
+        - Brew: 'shell/brew.md'
+    - Development:
+        - Python: 'development/python.md'
+        - Vue: 'development/vue.md'
+    - Documentation:
+        - MkDocs: 'documentation/mkdocs.md'
