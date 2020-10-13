@@ -19,7 +19,7 @@ vue create proj-name|.
 ```bash
 yarn add -D @fortawesome/fontawesome-free
 yarn add -D @mdi/font
-yarn add -D eslint eslint-plugin-vue@next
+# yarn add -D eslint eslint-plugin-vue@next
 yarn add vuex-persist
 # yarn add axios vue-axios (not sure)
 yarn add sprintf-js
@@ -74,8 +74,8 @@ In `main.js`:
 ```js
 // ES5 conversion
 // get rid of this: import '@babel/polyfill'
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 
 // Basics
 import Vue from 'vue'
@@ -83,7 +83,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
-import UUID from 'vue-uuid';
+import UUID from 'vue-uuid'
 import VueMoment from 'vue-moment'
 import moment from 'moment-timezone'
 
@@ -118,5 +118,74 @@ In `.exlintrc`:
   "parser": "babel-eslint",
   "extends": ["plugin:vue/base"],
   "rules": {}
+}
+```
+
+## Disable `eslint` while building
+
+```bash
+yarn remove @vue/cli-plugin-eslint
+```
+
+## Configure eslint and prettier for `vue`
+
+1. Create a `.eslintrc.json` in your projects directory with the following content:
+
+```json
+{
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+  "plugins": ["vue", "prettier"],
+  "extends": ["eslint:recommended", "plugin:vue/recommended"],
+  "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "max-len": [
+      "error",
+      180,
+      2,
+      {
+        "ignoreComments": false,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": false,
+        "ignoreTemplateLiterals": false
+      }
+    ],
+    "vue/max-attributes-per-line": "off",
+    "vue/html-closing-bracket-newline": [
+      "error",
+      {
+        "singleline": "never",
+        "multiline": "never"
+      }
+    ]
+  }
+}
+```
+
+2. Create a `.prettierrc` in your project directory with the following content:
+
+```json
+{
+  "singleQuote": true,
+  "printWidth": 150,
+  "trailingComma": "none",
+  "arrowParents": "always",
+  "semi": false,
+  "jsxBracketSameLine": true
+}
+```
+
+3. Configure the project `settings.json` to use `.eslintrc.json`
+
+```json
+{
+  "eslint.options": {
+    "configFile": ".eslintrc.json"
+  }
 }
 ```

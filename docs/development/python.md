@@ -1,6 +1,7 @@
 # Python
 
 ## Install python
+
 > To install `brew` goto [Install brew](../shell/brew.md#Install brew)
 
 ```bash
@@ -26,4 +27,30 @@ export FLASK_ENV=development
 export PYTHONPATH=.:$(pipenv --py)
 
 pipenv shell
+```
+
+## Use migrations for `mongoengine`
+
+1. Install `mongoengine-migrate`
+
+```bash
+pip install mongoengine-migrate
+```
+
+2. Make migrations from a file
+
+```bash
+mongoengine-migrate makemigrations -m module.py
+```
+
+3. Migrate mongodb
+
+```bash
+mongoengine-migrate migrate
+```
+
+or
+
+```bash
+mongoengine-migrate migrate previous_migration
 ```

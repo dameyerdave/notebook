@@ -1,5 +1,46 @@
 # React Native
 
+## Upgrade `expo SDK`
+
+```bash
+npm i expo-cli -g --force
+expo upgrade
+... install required dependencies based on the npm output messages ...
+expo client:install:ios
+```
+
+### Fixing upgrade
+
+```bash
+yarn install --check-files
+watchman watch-del-all
+rm -rf node_modules
+expo install
+yarn start -c
+rm -rf /tmp/metro-*
+```
+
+### Fixing multiple react versions
+
+> If you have errors depending on invalid hook call warnings.
+
+```bash
+yarn list react
+```
+
+If multiple react versions are installed:
+
+> Be carefull! Linking react in expo projects does not fix the issue.
+
+```bash
+cd lib/node_module/react
+yarn link
+cd ../../../app
+yarn link react
+```
+
+> For expo npm packages that are included:
+
 ## Add SVG support
 
 1. Install the `react-native-svg-transformer` package
@@ -53,4 +94,84 @@ module.exports = (async () => {
     }
   }
 }
+```
+
+## Add `moment.js` support
+
+### Install `react-moment`
+
+```bash
+yarn add moment
+yarn add react-moment
+```
+
+### Use `react-moment`
+
+```jsx
+import Moment from "react-moment" import { Text } from "react-native"
+
+<Moment parse="x" format="YYYY/MM/DD" element={Text}>
+  1234567890
+</Moment>
+```
+
+## Build and deploy with expo
+
+1. Adjust `app.json`
+   At least the following properties:
+
+```json
+{
+  "expo": {
+    "version": "1.2.0",
+    "updates": {
+      "fallbackToCacheTimeout": 60000
+    },
+    "ios": {
+      "bundleIdentifier": "unique.bundle.identifier",
+      "buildNumber": "1.2.0"
+    }
+  }
+}
+```
+
+2. Publish the app to the expo servers
+
+```bash
+expo publish
+```
+
+3. Build the app on expo servers
+
+```bash
+expo build:ios
+```
+
+4. Upload the app to the app store
+
+```bash
+expo upload:ios
+```
+
+Or use the `Transporter` app available in the [App Store](https://apps.apple.com/ch/app/transporter/id1450874784).
+
+## Run app without development support
+
+```bash
+expo start --no-dev --minify
+```
+
+## Show logs from iPhone
+
+### Installation
+
+```bash
+brew install --HEAD libimobiledevice -g
+```
+
+### Usage
+
+```bash
+idevicepair pair
+idevicesyslog -q -K -m identifier|error|warn
 ```
