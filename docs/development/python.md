@@ -54,3 +54,28 @@ or
 ```bash
 mongoengine-migrate migrate previous_migration
 ```
+
+## Resolve `pylint` not resolvable local imports
+
+Edit `settings.json` inside the `.vscode` folder:
+
+```json
+{
+    "python.analysis.extraPaths": ["./sources"]
+}
+```
+
+## `pip` install from a local repo
+
+```bash
+pip install -e path/to/repo
+```
+
+## Regenerate `Pipfile` from `requirements.txt`
+
+```bash
+pip freeze > requirements.txt
+pipenv install -r requirements.txt
+rm -f requirements.txt
+```
+

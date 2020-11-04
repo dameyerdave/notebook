@@ -19,9 +19,7 @@ vue create proj-name|.
 ```bash
 yarn add -D @fortawesome/fontawesome-free
 yarn add -D @mdi/font
-# yarn add -D eslint eslint-plugin-vue@next
 yarn add vuex-persist
-# yarn add axios vue-axios (not sure)
 yarn add sprintf-js
 yarn add vue-moment
 yarn add moment-timezone
@@ -56,7 +54,6 @@ VUE_APP_API_URL = https://production.server.com
 vue add vuetify
 vue add i18n
 vue add axios
-# vue add moment (not sure)
 ```
 
 ## Run the development server

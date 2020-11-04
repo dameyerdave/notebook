@@ -21,7 +21,23 @@ cd repo
 git remote add upstream https://dameyerdave@github.com:original_user/repo.git
 ```
 
-5. Apply your changes
+5. Prepare vscode to not format/pretty/lint
+
+`.prettierrc`
+
+```json
+{}
+```
+
+`.vscode/settings.json`
+
+```json
+{
+    "editor.formatOnSave": false,
+    "python.linting.Pylintnabled": false,
+    "python.linting.flake8enabled": false
+}
+```
 
 6. Create a branch etc...
 
@@ -32,19 +48,21 @@ git push origin master
 git checkout -b [hotfix|feature]/description
 ```
 
-7. Commit your changes
+7. Apply your changes
+
+8. Commit your changes
 
 ```bash
 git commit -am 'commit message'
 ```
 
-8. Push your changes
+9. Push your changes
 
 ```bash
 git push -u origin [hotfix|feature]/description
 ```
 
-9. Compare and generate a `pull request` on github
+10. Compare and generate a `pull request` on the upstream repo
 
 ## Syncing a fork
 
@@ -65,3 +83,25 @@ git checkout master
 ```bash
 git merge upstream/master
 ```
+
+## Tagging
+
+### Create (and push) a tag
+
+```bash
+git tag -a v1.4 -m 'my version 1.4'
+git push origin --tags
+```
+
+### Delete a tag
+
+```bash
+git tag -d v1.4
+```
+
+### Checkout a tag
+
+```bash
+git checkout -b v1.4 v1.4
+```
+

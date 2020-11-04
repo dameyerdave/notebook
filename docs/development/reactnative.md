@@ -115,6 +115,34 @@ import Moment from "react-moment" import { Text } from "react-native"
 </Moment>
 ```
 
+## Add `.env` support to babel
+
+&rarr; [Installation instructions](https://github.com/zetachang/react-native-dotenv/tree/master/babel-plugin-dotenv)
+
+### Install `babel-plugin-dotenv`
+
+```bash
+yarn add babel-plugin-dotenv
+```
+
+### Configure `babel-plugin-dotenv`
+
+In your `babel.config.js` add the following:
+
+```js
+{
+  plugins: [["babel-plugin-dotenv", {
+    "replacedModuleName": "babel-dotenv"
+  }]]
+}
+```
+
+### Use `babel-plugin-dotenv`
+
+```js
+import {API_URL, API_TOKEN} from "babel-dotenv"
+```
+
 ## Build and deploy with expo
 
 1. Adjust `app.json`
@@ -125,7 +153,7 @@ import Moment from "react-moment" import { Text } from "react-native"
   "expo": {
     "version": "1.2.0",
     "updates": {
-      "fallbackToCacheTimeout": 60000
+      "fallbackToCacheTimeout": 30000
     },
     "ios": {
       "bundleIdentifier": "unique.bundle.identifier",

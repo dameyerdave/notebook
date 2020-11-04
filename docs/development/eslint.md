@@ -23,25 +23,59 @@ node_modules/.bin/eslint --init
 eslint --fix some_file
 ```
 
-## Example `.eslintrc.json`
+## Example `.eslintrc.json` for vue
 
 ```json
 {
   "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": ["eslint:recommended", "plugin:vue/essential"],
+   "browser": true,
+   "node": true,
+   "es6": true
+ },
+  "parser": "vue-eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module"
+    "parser": "babel-eslint"
   },
-  "plugins": ["vue"],
+  "plugins": ["vue", "prettier"],
+  "extends": ["eslint:recommended", "plugin:vue/recommended"],
   "rules": {
-    "indent": ["error", "tab"],
+    "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "max-len": [
+      "error",
+      180,
+      2,
+      {
+        "ignoreComments": false,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": false,
+        "ignoreTemplateLiterals": false
+      }
+    ],
+    "vue/max-attributes-per-line": "off",
+    "vue/html-closing-bracket-newline": [
+      "error",
+      {
+        "singleline": "never",
+        "multiline": "never"
+      }
+    ]
   }
+}
+```
+
+## Example `.prettierrc` for vue
+
+```json
+{
+    "singleQuote": true,
+    "printWidth": 150,
+    "trailingComma": "none",
+    "arrowParents": "always",
+    "semi": false,
+    "jsxBracketSameLine": true,
+    "tabWidth": 2
 }
 ```
