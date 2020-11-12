@@ -105,3 +105,32 @@ git tag -d v1.4
 git checkout -b v1.4 v1.4
 ```
 
+## Create issue templates
+
+1. Create a folder called `.github/ISSUE_TEMPLATE` in your repository
+
+```bash
+mkdir -p .github/ISSUE_TEMPLATE
+```
+
+2. Create as many templates you want using the following markdown template
+
+```md
+---
+name: 'Issue Report'
+about: 'You want to report an issue.'
+labels: 'Issue'
+---
+
+## Issue Report
+
+### Summary of Issue 
+<!-- (just a few sentences) -->
+
+### Actual Behavior
+
+### Expected Behavior
+
+### Steps to Reproduce
+```
+

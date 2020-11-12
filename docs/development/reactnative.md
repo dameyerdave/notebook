@@ -227,3 +227,9 @@ module.exports = {
 
 ### Deploy an ejected app
 &rarr; Please goto [How to deploy a react native ios app on the app store](https://readybytes.in/blog/how-to-deploy-a-react-native-ios-app-on-the-app-store) for further information.
+
+## Create a native objective c class that communicates with react native
+
+&rarr; Please goto [react native bridge modules for ios](https://blog.pixielabs.io/react-native-bridge-modules-for-ios-be0f4cec0435) for further instructions about the `react native bridge` module.
+
+&rarr; Also have a look at the [React Native Bridging Cheatsheet](https://gist.github.com/chourobin/f83f3b3a6fd2053fad29fff69524f91c).
