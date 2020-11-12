@@ -203,3 +203,27 @@ brew install --HEAD libimobiledevice -g
 idevicepair pair
 idevicesyslog -q -K -m identifier|error|warn
 ```
+
+## Expo eject
+
+```bash
+expo eject
+cd ios
+pod install
+```
+
+### Make sure the assets are copied correctly
+
+You should return the following transformer in your `metro.config.js` file. If the file already exists before ejecting the
+eject process will not adjust it correctly:
+
+```js
+module.exports = {
+    transformer: {
+        assetPlugins: ['expo-asset/tools/hashAssetFiles']
+    }
+};
+```
+
+### Deploy an ejected app
+&rarr; Please goto [How to deploy a react native ios app on the app store](https://readybytes.in/blog/how-to-deploy-a-react-native-ios-app-on-the-app-store) for further information.
