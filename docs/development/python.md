@@ -79,3 +79,38 @@ pipenv install -r requirements.txt
 rm -f requirements.txt
 ```
 
+## Create a pipenv from a project
+
+Inside your projects directory:
+
+```bash
+pipenv shell
+pipenv install
+```
+
+## Update a package using `pipenv`
+
+```bash
+pipenv update <package>
+```
+
+## Install multiple python versions on mac using `homebrew`
+
+```bash
+brew update
+brew install pyenv
+pyenv install 3.7.4
+pyenv versions
+```
+
+> set the pipenv python version
+
+```bash
+pipenv install --python ~/.pyenv/versions/3.7.4/bin/python
+```
+
+## Trick to install `pszcopg2`
+
+```bash
+env LDFLAGS='-L/usr/local/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib' pipenv install psycopg2
+```

@@ -1,5 +1,11 @@
 # Git
 
+## Install github cli
+
+```bash
+brew install hub
+```
+
 ## Contribute to git repo
 
 1. `Fork` the repo to your github account
