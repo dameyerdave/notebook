@@ -123,20 +123,34 @@ mkdir -p .github/ISSUE_TEMPLATE
 
 ```md
 ---
-name: 'Issue Report'
-about: 'You want to report an issue.'
-labels: 'Issue'
+name: API Bug Report
+about: You want to report a bug in the API.
+title: "[TITLE]"
+labels: Bug, API
 ---
 
-## Issue Report
+### Summary
 
-### Summary of Issue 
-<!-- (just a few sentences) -->
+<!-- Summarize the bug encountered concisely -->
 
-### Actual Behavior
+### Steps to reproduce
 
-### Expected Behavior
+<!-- How one can reproduce the issue - this is very important -->
 
-### Steps to Reproduce
+### Example page (Optional)
+
+<!-- If possible, please provide the URL of the page here that exhibits the problematic behavior -->
+
+### What is the current *bug* behavior?
+
+<!-- What actually happens -->
+
+### What is the expected *correct* behavior?
+
+<!-- What you should see instead -->
+
+### Relevant screenshots and/or logs
+
+<!-- Paste any relevant screenshots -->
 ```
 
