@@ -154,3 +154,94 @@ labels: Bug, API
 <!-- Paste any relevant screenshots -->
 ```
 
+## Completely remote file fom git repo
+
+&rarr; see [here](https://itextpdf.com/en/blog/technical-notes/how-completely-remove-file-git-repository)
+
+### Keep the file locally
+
+```bash
+git rm --cached $FILE
+echo $FILE >> .gitignore
+git add .gitignore
+git commit --amend --no-edit
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
+git push --force-with-lease origin master
+```
+
+### Delete the file locally
+
+```bash
+git rm $FILE
+git commit --amend --no-edit
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
+git push --force-with-lease origin master
+```
+
+## Revert last local commit (keep changes)
+
+```bash
+git reset --soft HEAD~1
+```
+
+## Revert last local commit (delete changes)
+
+```bash
+git reset --hard HEAD~1
+```
+
+## Remove a file from the previous commit
+
+```bash
+git reset --soft HEAD~1
+git reset HEAD path/to/unwanted_file
+git commit -c ORIG_HEAD  
+```
+
+## Revert to a previous commit (delete changes)
+
+This can be used to go back in history and restart committing from there on.
+
+```bash
+git reset --hard 'your last working commit hash'
+git clean -f -d
+git push -f
+```
+
+## Delete commits in between (locally only)
+
+&rarr; See [here](https://www.clock.co.uk/insight/deleting-a-git-commit)
+
+```bash
+git rebase --onto <branch name>~<first commit number to remove> <branch name>~<first commit number to keep> <branch name>
+```
+
+> To get the `commit number` use `xpgl` from [this git repo](https://github.com/dameyerdave/devutils).
+
+## Delete branch
+
+### List branches
+
+```bash
+git branch    <-- lists local branches
+git branch -r <-- lists remote branches
+git branch -a <-- lists local and remote branches
+```
+
+### Delete branch locally
+
+```bash
+git branch -d localBranchName
+```
+
+### Delete branch remotely
+
+```bash
+git push origin --delete remoteBranchName
+```
+
+### Get a list of files included in a commit
+
+```bash
+git show --pretty="" --name-only bd61ad98
+```

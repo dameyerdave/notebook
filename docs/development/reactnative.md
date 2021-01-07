@@ -1,5 +1,14 @@
 # React Native
 
+## Create a react native app
+
+```bash
+npm install -g react-native-cli
+react-native init MyApp
+cd MyApp
+react-native run-ios
+```
+
 ## Upgrade `expo SDK`
 
 ```bash

@@ -176,7 +176,16 @@ Edit `settings.json` inside the `.vscode` folder:
 
 ```json
 {
-    "python.analysis.extraPaths": ["./sources"]
+    "python.pythonPath": "$(pipenv --py)",
+    "python.analysis.extraPaths": ["./sources"],
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "python.analysis.extraPaths": ["./path/if/exists"]
 }
 ```
 
@@ -192,4 +201,73 @@ pip install -e path/to/repo
 
 ```bash
 env LDFLAGS='-L/usr/local/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib' pipenv install psycopg2
+```
+
+## Create a pypi package
+
+&rarr; [How to](https://dzone.com/articles/executable-package-pip-install)
+
+1. Install required software
+
+```bash
+pipenv install setuptools wheel tqdm twine
+```
+
+2. Create a `setup.py` file:
+
+```python
+import setuptools
+
+with open('README.md', 'r') as fh:
+    long_description = fh.read()
+
+setuptools.setup(
+    name='python-rules-evaluator',
+    version=0.1,
+    author='David Meyer',
+    author_email='dameyerdave@gmail.com',
+    description='Python Rules Evaluator',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    python_requires='>=3.5',
+    url='https://github.com/dameyerdave/python-rules-evaluator',
+    packages=setuptools.find_packages(exclude='test'),
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent'
+    ],
+    install_requires=[
+        'pyyaml',
+        'friendlylog'
+    ]
+)
+```
+
+3. Compile the package
+
+```bash
+python setup.py sdist bdist_wheel
+```
+
+4. Install it on your local machine
+
+```bash
+pipenv install dist/*.whl
+```
+
+5. Create a `~/.pypirc` file
+
+```ini
+[distutils]
+index-servers=pypi
+[pypi]
+repository = https://upload.pypi.org/legacy/
+username = dameyerdave
+```
+
+6. Upload it to `pypi.org`
+
+```bash
+twine upload dist/*
 ```
