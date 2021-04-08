@@ -21,12 +21,13 @@ brew install pipenv
 pipenv --python /usr/local/bin/python3.8
 pipenv install python-dotenv
 
-vi .env
-export PS1="[\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]]\$ "
+vi .envrc
+export CUSTOM_PS1="\[\033[0;1;44m\](venv)\[\033[m\] [\[\033[36m\]\u\[\033[m\]@\[\033[32m\]noti:\[\033[33;1m\]\w\[\033[m\]]\$ "
 export PYTHONPATH=.:$(pipenv --py)
 export PIPENV_SKIP_LOCK=true
+export PIPENV_VERBOSITY=-1
+# export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-export FLASK_APP=icarus.py
 export FLASK_ENV=development
 
 pipenv shell
@@ -177,15 +178,23 @@ Edit `settings.json` inside the `.vscode` folder:
 ```json
 {
     "python.pythonPath": "$(pipenv --py)",
-    "python.analysis.extraPaths": ["./sources"],
-    "python.envFile": "${workspaceFolder}/.env",
+    "python.analysis.extraPaths": ["${workspaceFolder}/<python source>"],
+}
+```
+
+## Additional settings for `vscode`
+
+```json
+{
+    "python.envFile": "${workspaceFolder}/<python source>/.env",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
+    "python.terminal.activateEnvironment": false,
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
-    },
-    "python.analysis.extraPaths": ["./path/if/exists"]
+    }
+    
 }
 ```
 
@@ -244,7 +253,15 @@ setuptools.setup(
 )
 ```
 
-3. Compile the package
+3. Create a module
+
+```bash
+mkdir python-rules-evaluator
+cd python-rules-evaluator
+touch __init__.py
+```
+
+4. Compile the package
 
 ```bash
 python setup.py sdist bdist_wheel

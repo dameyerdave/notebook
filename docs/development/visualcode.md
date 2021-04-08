@@ -4,6 +4,12 @@
 
 ## Configure Visual Code for Python
 
+```json
+{
+  "python.terminal.activateEnvironment": false
+}
+```
+
 ### Install the following extensions
 
 - [ ] Pylance

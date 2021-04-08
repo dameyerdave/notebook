@@ -10,7 +10,7 @@ django.__version__
 ## Important `django-admin` commands
 
 ```bash
-django-admin startproject my_project
+django-admin startproject my_project .
 django-admin startapp my_app
 ```
 

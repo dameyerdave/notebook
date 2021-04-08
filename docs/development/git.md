@@ -245,3 +245,10 @@ git push origin --delete remoteBranchName
 ```bash
 git show --pretty="" --name-only bd61ad98
 ```
+
+## Delete files from the whole history
+
+```bash
+cd <repo>
+bfg --delete-files <file>
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
