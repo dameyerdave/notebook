@@ -202,3 +202,9 @@ python manage.py migrate
 ```bash
 python manage.py createsuperuser
 ```
+
+## Reset the primary key sequences
+
+```bash
+python manage.py sqlsequencereset api | python manage.py dbshell
+```

@@ -14,6 +14,12 @@ brew install python
 brew upgrade python@3.8
 ```
 
+## Safety check (security audit)
+```bash
+pip install safety
+safety check
+```
+
 ## Create a virtual environment
 
 ```bash
@@ -90,6 +96,12 @@ pipenv install
 
 ```bash
 pipenv update <package>
+```
+
+## Install a package directly from git
+
+```bash
+pipenv install -e git+https://github.com/dameyerdave/mongoengine-history.git#egg=mongoengine_history
 ```
 
 ## Install multiple python versions on mac using `homebrew`
@@ -231,7 +243,7 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='python-rules-evaluator',
+    name='package-name',
     version=0.1,
     author='David Meyer',
     author_email='dameyerdave@gmail.com',
@@ -249,7 +261,13 @@ setuptools.setup(
     install_requires=[
         'pyyaml',
         'friendlylog'
-    ]
+    ],
+    entry_points={
+        'console_scripts': {
+            'command = package.module:method'
+        }
+    }
+
 )
 ```
 
