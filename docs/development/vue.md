@@ -26,6 +26,7 @@ yarn add moment-timezone
 yarn add vue-js-modal
 yarn add vue-uuid
 yarn add vue-moment moment-timezone
+yarn add vue-multiselect
 ```
 
 ## Add required files
@@ -183,6 +184,74 @@ yarn remove @vue/cli-plugin-eslint
 {
   "eslint.options": {
     "configFile": ".eslintrc.json"
+  }
+}
+```
+
+## Use git version and revision inside the app
+
+1. Add and configure the `git-revision-webpack-plugin` in your `vue.config.js`.
+
+```js
+const pkg_json = require('./package.json')
+// incuding the following line will use the version from package.json
+// process.env.VUE_APP_VERSION = pkg_json.version;
+process.env.VUE_APP_RELEASE_NAME = pkg_json.releaseName
+
+const GitRevisionPlugin = require('git-revision-webpack-plugin')
+
+module.exports = {
+  chainWebpack: config => {
+    config.plugin('define').tap(args => {
+      const gitRevisionPlugin = new GitRevisionPlugin()
+      args[0]['process.env']['VUE_APP_VERSION'] = JSON.stringify(gitRevisionPlugin.version())
+      // If you also want to use the latest commit hash
+      // args[0]['process.env']['VUE_APP_COMMITHASH'] = JSON.stringify(gitRevisionPlugin.commithash())
+      // If you also want to use the branch name!
+      // args[0]['process.env']['VUE_APP_BRANCH'] = JSON.stringify(gitRevisionPlugin.branch())
+      // The following line is supported if you are using webpack v5 or later
+      // args[0]['process.env']['VUE_APP_LASTCOMMITDATETIME'] = JSON.stringify(gitRevisionPlugin.lastcommitdatetime())
+      return args
+    })
+  }
+}
+```
+
+2. In the `package.json` file add or set the following values:
+
+```json
+{
+  "version": "0.2.0",
+  "releaseName": "beta 2",
+}
+```
+
+3. In your `app_config.js` export the values as global variables:
+
+```js
+export const appVersion = process.env.VUE_APP_VERSION
+export const releaseName = process.env.VUE_APP_RELEASE_NAME
+```
+
+4. Use the values inside a component:
+
+```html
+<template>
+  <div>
+    {{ appVersion }} ({{ releaseName }})
+  </div>
+</template>
+```
+
+```js
+import { appVersion, releaseName } from '@/app_config'
+
+export default {
+  data() {
+    return {
+      appVersion,
+      releaseName
+    }
   }
 }
 ```
