@@ -28,7 +28,6 @@ vi ~/.docker/config.json
 
 ```dockerfile
 FROM python:3.9.6
-MAINTAINER dameyerdave@gmail.com
 
 # COPY ./requirements.txt /requirements.txt
 # RUN pip install -r /requirements.txt
