@@ -71,3 +71,72 @@ pipenv shell
 ## Configure Visual Code for Vue
 
 ## Configure Visual Code for React-Native
+
+## Configure prettier / eslint
+
+in `.prittierrc.json`
+
+```json
+{
+  "printWidth": 110,
+  "trailingComma": "es5",
+  "semi": true,
+  "jsxSingleQuote": true,
+  "singleQuote": true,
+  "arrowParents": "avoid",
+  "quoteProps": "consistent"
+}
+```
+
+in `settings.json`
+
+```json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
+}
+```
+
+in `package.json`
+
+```json
+"scripts": {
+    "format": "prettier --write . && npx eslint . --fix",
+    "check-format": "prettier --check .",
+    "check-types": "tsc --noEmit"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "plugins": [
+      "unused-imports"
+    ],
+    "rules": {
+      "no-unused-vars": "off",
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        {
+          "vars": "all",
+          "varsIgnorePattern": "^_",
+          "args": "after-used",
+          "argsIgnorePattern": "^_"
+        }
+      ]
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+```

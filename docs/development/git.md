@@ -252,3 +252,21 @@ git show --pretty="" --name-only bd61ad98
 cd <repo>
 bfg --delete-files <file>
 git reflog expire --expire=now --all && git gc --prune=now --aggressive
+```
+
+## Fix empty bbject files
+
+If you have error messages like
+
+```bash
+error: object file .git/objects/73/ac43d6ce4b1a2f4d2801b5e9bdbef25fe953eb is empty
+fatal: loose object 73ac43d6ce4b1a2f4d2801b5e9bdbef25fe953eb (stored in .git/objects/73/ac43d6ce4b1a2f4d2801b5e9bdbef25fe953eb) is corrupt
+```
+
+then you can do the following to get git in sync again:
+
+```bash
+find .git/objects/ -type f -empty | xargs rm
+git fetch -p
+git fsck --full
+```

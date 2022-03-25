@@ -75,12 +75,18 @@ pipenv check
 pipenv package==1.0.0
 ```
 
-## Regenerate `Pipfile` from `requirements.txt`
+## Generate `Pipfile` from `requirements.txt`
 
 ```bash
 pip freeze > requirements.txt
 pipenv install -r requirements.txt
 rm -f requirements.txt
+```
+
+## Generate `requirements`.txt from `Pipfile`
+
+```bash
+pipenv lock -r > requirements.txt
 ```
 
 ## Create a pipenv from a project
