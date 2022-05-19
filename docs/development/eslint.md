@@ -17,6 +17,23 @@ node_modules/.bin/eslint --init
 ✔ Do you require semicolons?                               No
 ```
 
+```bash
+node_modules/.bin/eslint --init
+✔ How would you like to use ESLint? · style
+✔ What type of modules does your project use? · esm
+✔ Which framework does your project use? · vue
+✔ Does your project use TypeScript? · No / Yes
+✔ Where does your code run? · browser
+✔ How would you like to define a style for your project? · prompt
+✔ What format do you want your config file to be in? · JavaScript
+✔ What style of indentation do you use? · 4
+✔ What quotes do you use for strings? · single
+✔ What line endings do you use? · unix
+✔ Do you require semicolons? · No / Yes
+✔ Would you like to install them now with npm? · No / Yes
+Successfully created .eslintrc.js file in /app
+```
+
 ## Fix issues
 
 ```bash

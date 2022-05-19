@@ -270,3 +270,29 @@ find .git/objects/ -type f -empty | xargs rm
 git fetch -p
 git fsck --full
 ```
+
+## Autodeploy using bare git repo
+
+On the remote site:
+
+```bash
+git init --bare deploy.git
+vi deploy.git/hooks/post-receive
+```
+
+```bash
+#!/bin/bash
+
+echo "######## DEPLOY ############"
+cd /path/to/git/repo
+unset GIT_DIR
+make redeploy
+exit 1
+```
+
+On the local site:
+
+```bash
+git remote add deploy ssh_conf:/path/to/deploy.git
+git push deploy
+```
