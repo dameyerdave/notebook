@@ -312,3 +312,12 @@ username = dameyerdave
 ```bash
 twine upload dist/*
 ```
+
+## Install python3.10 on Ubuntu Linux
+
+```bash
+apt install -y software-properties-common
+add-apt-repository ppa:deadsnakes/ppa
+apt install python3.10
+curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
+```
